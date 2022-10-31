@@ -1,7 +1,7 @@
 # MVCUserRoleManager
 
 ## Description
-Implementation for user and roles management into an MVC application based on ASP.Net Core Identity.
+Implementation of user and roles management in an MVC app wth ASP.NET Core Identity.
 
 Project include customization for default User and Role Identity:
 * First and last name for user
