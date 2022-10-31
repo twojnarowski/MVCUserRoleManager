@@ -28,17 +28,9 @@ namespace MVCUserRoleManager.Controllers
         // GET: RolesController
         public async Task<ActionResult> Index()
         {
-            List<Role> roles = null!;
-
-            roles = await _roleManager.Roles.ToListAsync();
+            List<Role> roles = await _roleManager.Roles.ToListAsync();
 
             return View(roles);
-        }
-
-        // GET: RolesController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: RolesController/Create
@@ -73,7 +65,7 @@ namespace MVCUserRoleManager.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             var role = await _roleManager.FindByIdAsync(id);
@@ -117,7 +109,7 @@ namespace MVCUserRoleManager.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             var role = await _roleManager.FindByIdAsync(id);
@@ -142,7 +134,7 @@ namespace MVCUserRoleManager.Controllers
             var role = await _roleManager.FindByIdAsync(id);
             if (role != null)
             {
-                this._roleManager.DeleteAsync(role);
+                await this._roleManager.DeleteAsync(role);
             }
 
             return this.RedirectToAction(nameof(this.Index));

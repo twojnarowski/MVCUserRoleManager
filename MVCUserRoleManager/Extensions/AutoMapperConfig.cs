@@ -6,6 +6,10 @@ namespace MVCUserRoleManager.Extensions
 {
     public class AutoMapperConfig
     {
+        /// <summary>
+        /// Initializing an AutoMapper to help in mapping DTOs into regular objects and the other way around.
+        /// </summary>
+        /// <returns></returns>
         public static IMapper Initialize()
         {
             var config = new MapperConfiguration(cfg =>

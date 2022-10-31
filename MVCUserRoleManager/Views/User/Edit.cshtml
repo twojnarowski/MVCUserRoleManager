@@ -1,8 +1,10 @@
 ﻿@model MVCUserRoleManager.Areas.Identity.DataDto.UserDto
 @using MVCUserRoleManager.Areas.Identity.Data;
+
 @{
     ViewData["Title"] = "Edit user";
 }
+
 <div class="row pt-4">
     <h1>Edit user</h1>
 </div>
@@ -33,7 +35,7 @@
             }
         })
     }
-        function removeRole(role) {
+    function removeRole(role) {
         $.ajax({
             url: '@Url.Action("RemoveRole", "User")',
             dataType: 'html',
@@ -92,8 +94,6 @@
         </form>
     </div>
 </div>
-
-
 
 @section Scripts {
     @{

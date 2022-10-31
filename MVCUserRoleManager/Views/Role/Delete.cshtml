@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Remove role";
 }
+
 <div class=" row pt-4">
     <h1>Remove role</h1>
 </div>
@@ -13,31 +14,33 @@
 
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Badge)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Badge)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Id)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Id)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <button type="submit" class="btn btn-danger"> 
-        <i class="bi bi-trash3"></i> &nbsp Delete</button>
+        <button type="submit" class="btn btn-danger">
+            <i class="bi bi-trash3"></i> &nbsp Delete
+        </button>
         <a asp-action="Index" class="btn btn-primary">
-        <i class="bi bi-box-arrow-in-left"></i> &nbsp Return</a>
+            <i class="bi bi-box-arrow-in-left"></i> &nbsp Return
+        </a>
     </form>
 </div>

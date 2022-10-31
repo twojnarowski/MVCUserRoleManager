@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using MVCUserRoleManager.Areas.Identity.Data;
-
+<!-- Injecting managers required by Identity. --> 
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
@@ -31,13 +31,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <!-- Adding navigation to User- and Role-Managers controllers. -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Users</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Index">Roles</a>
                         </li>
+                        <!-- End -->
                     </ul>
+                    <!-- Adding default login, register and logout buttons from Identity -->
                     <partial name="_LoginPartial" />
                 </div>
             </div>

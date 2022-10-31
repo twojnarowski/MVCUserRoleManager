@@ -22,16 +22,14 @@ namespace MVCUserRoleManager.Controllers
 
         public UserController(UserManager<User> userManager, RoleManager<Role> roleManager)
         {
-            _userManager = userManager;
-            _roleManager = roleManager;
+            this._userManager = userManager;
+            this._roleManager = roleManager;
         }
 
         // GET: UsersController
         public async Task<ActionResult> Index()
         {
-            List<User> users = null!;
-
-            users = await _userManager.Users.ToListAsync();
+            List<User> users = await _userManager.Users.ToListAsync();
 
             foreach (var user in users)
             {
@@ -46,7 +44,7 @@ namespace MVCUserRoleManager.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             var user = await _userManager.FindByIdAsync(id);
@@ -55,8 +53,7 @@ namespace MVCUserRoleManager.Controllers
                 return this.NotFound();
             }
 
-            IMapper mapper = AutoMapperConfig.Initialize();
-            UserDto userDto = mapper.Map<User, UserDto>(user);
+            UserDto userDto = AutoMapperConfig.Initialize().Map<User, UserDto>(user);
             ViewBag.Roles = await _roleManager.Roles.ToListAsync();
             ViewBag.UserRoles = await _userManager.GetRolesAsync(user);
             return this.View(userDto);
@@ -74,8 +71,6 @@ namespace MVCUserRoleManager.Controllers
 
             if (this.ModelState.IsValid)
             {
-                IMapper mapper = AutoMapperConfig.Initialize();
-
                 var existingUser = await this._userManager.FindByIdAsync(id);
                 if (existingUser != null)
                 {
@@ -101,7 +96,7 @@ namespace MVCUserRoleManager.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             var user = await _userManager.FindByIdAsync(id);
@@ -123,10 +118,10 @@ namespace MVCUserRoleManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var user = await _userManager.FindByIdAsync(id);
+            var user = await this._userManager.FindByIdAsync(id);
             if (user != null)
             {
-                this._userManager.DeleteAsync(user);
+                await this._userManager.DeleteAsync(user);
             }
 
             return this.RedirectToAction(nameof(this.Index));
@@ -137,7 +132,7 @@ namespace MVCUserRoleManager.Controllers
         {
             if (roleId == null || userId == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             var user = await _userManager.FindByIdAsync(userId);
@@ -152,7 +147,7 @@ namespace MVCUserRoleManager.Controllers
                 return this.NotFound();
             }
 
-            await _userManager.AddToRoleAsync(user, role.Name);
+            await this._userManager.AddToRoleAsync(user, role.Name);
 
             return this.Ok();
         }
@@ -162,7 +157,7 @@ namespace MVCUserRoleManager.Controllers
         {
             if (roleId == null || userId == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             var user = await _userManager.FindByIdAsync(userId);
@@ -177,7 +172,7 @@ namespace MVCUserRoleManager.Controllers
                 return this.NotFound();
             }
 
-            await _userManager.RemoveFromRoleAsync(user, role.Name);
+            await this._userManager.RemoveFromRoleAsync(user, role.Name);
 
             return this.Ok();
         }
