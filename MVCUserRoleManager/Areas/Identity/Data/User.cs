@@ -8,8 +8,8 @@ namespace MVCUserRoleManager.Areas.Identity.Data
     {
         public User() : base()
         {
-
         }
+
         public User(string userName, string firstName, string lastName) : base(userName)
         {
             FirstName = firstName;
