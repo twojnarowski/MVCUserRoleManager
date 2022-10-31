@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MVCUserRoleManager.Areas.Identity.Data;
 
 namespace MVCUserRoleManager.Data;
 
-public class MVCUserRoleManagerContext : IdentityDbContext<IdentityUser>
+public class MVCUserRoleManagerContext : IdentityDbContext<User, Role, string>
 {
     public MVCUserRoleManagerContext(DbContextOptions<MVCUserRoleManagerContext> options)
         : base(options)

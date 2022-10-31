@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVCUserRoleManager.Areas.Identity.Data;
+using MVCUserRoleManager.Areas.Identity.DataDto;
+using MVCUserRoleManager.Extensions;
 
 namespace MVCUserRoleManager.Controllers
 {
@@ -17,7 +20,7 @@ namespace MVCUserRoleManager.Controllers
         /// </summary>
         private readonly RoleManager<Role> _roleManager;
 
-        public UsersController(UserManager<User> userManager, RoleManager<Role> roleManager)
+        public UserController(UserManager<User> userManager, RoleManager<Role> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -52,7 +55,7 @@ namespace MVCUserRoleManager.Controllers
                 return this.NotFound();
             }
 
-            IMapper mapper = IdentityAutoMapperConfig.Initialize();
+            IMapper mapper = AutoMapperConfig.Initialize();
             UserDto userDto = mapper.Map<User, UserDto>(user);
             ViewBag.Roles = await _roleManager.Roles.ToListAsync();
             ViewBag.UserRoles = await _userManager.GetRolesAsync(user);
@@ -71,7 +74,7 @@ namespace MVCUserRoleManager.Controllers
 
             if (this.ModelState.IsValid)
             {
-                IMapper mapper = IdentityAutoMapperConfig.Initialize();
+                IMapper mapper = AutoMapperConfig.Initialize();
 
                 var existingUser = await this._userManager.FindByIdAsync(id);
                 if (existingUser != null)

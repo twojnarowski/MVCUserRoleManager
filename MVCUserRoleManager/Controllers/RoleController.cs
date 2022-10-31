@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVCUserRoleManager.Areas.Identity.Data;
 using MVCUserRoleManager.Areas.Identity.DataDto;
+using MVCUserRoleManager.Extensions;
 
 namespace MVCUserRoleManager.Controllers
 {
@@ -53,7 +54,7 @@ namespace MVCUserRoleManager.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                Role role = IdentityAutoMapperConfig.Initialize().Map<RoleDto, Role>(roleDto);
+                Role role = AutoMapperConfig.Initialize().Map<RoleDto, Role>(roleDto);
 
                 var duplicateRole = await this._roleManager.FindByNameAsync(role.Name);
                 if (duplicateRole is null)
@@ -81,7 +82,7 @@ namespace MVCUserRoleManager.Controllers
                 return this.NotFound();
             }
 
-            RoleDto roleDto = IdentityAutoMapperConfig.Initialize().Map<Role, RoleDto>(role);
+            RoleDto roleDto = AutoMapperConfig.Initialize().Map<Role, RoleDto>(role);
             return this.View(roleDto);
         }
 
