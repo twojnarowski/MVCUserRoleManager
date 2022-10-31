@@ -1,0 +1,46 @@
+﻿@model MVCUserRoleManager.Areas.Identity.DataDto.PoolRoleDto
+
+@{
+    ViewData["Title"] = "Add new role";
+}
+
+<div class="row pt-4">
+    <h1>Add new role</h1>
+    <h4>Role</h4>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Badge" class="control-label"></label>
+                <input asp-for="Badge" class="form-control" />
+                <span asp-validation-for="Badge" class="text-danger"></span>
+            </div>
+            <div class="row pt-4">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> &nbsp Add
+                    </button>
+                    <a asp-action="Index" class="btn btn-primary">
+                        <i class="bi bi-box-arrow-in-left"></i>&nbsp Return
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

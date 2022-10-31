@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVCUserRoleManager.Areas.Identity.Data;
+using MVCUserRoleManager.Areas.Identity.DataDto;
 
 namespace MVCUserRoleManager.Controllers
 {
