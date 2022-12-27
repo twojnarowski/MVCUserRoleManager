@@ -4,7 +4,7 @@ using MVCUserRoleManager.Areas.Identity.DataDto;
 
 namespace MVCUserRoleManager.Extensions
 {
-    public class AutoMapperConfig
+    public static class AutoMapperConfig
     {
         /// <summary>
         /// Initializing an AutoMapper to help in mapping DTOs into regular objects and the other way around.
